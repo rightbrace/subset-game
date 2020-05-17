@@ -6,8 +6,18 @@ alphabet (as in a set of letters, not as in A-Z).
 
 # Installation
 
-Subset requires Python 3.5 onwards and uses the `colorama` package. It runs on
-Linux, should run on macOS, and theoretically runs on Windows.
+Subset requires Python 3.5 onwards and uses the `colorama` package. 
+
+
+Platform  |  Compatability
+----------|---------------
+Linux     | Yes, confirmed
+Termux (Android)    | Yes, confirmed
+macOS     | Likely, unconfirmed
+Windows   | Possibly, unconfirmed
+
+If anyone does run this through macOS or Windows, open an issue if anything is
+broken.
 
 ## Through Pip
 
