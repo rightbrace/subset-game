@@ -295,7 +295,7 @@ def print_about():
     print(align(f"See {ROOT}/DICTIONARY_LICENSE.txt for license information.", WIDTH, "c"))
     print()
     print(align(f"{YELLOW}Subset{DEFAULT} is open source and available at:", WIDTH, "c"))
-    print(align(f"{CYAN}[todo]{DEFAULT}", WIDTH, "c"))
+    print(align(f"{CYAN}https://github.com/rightbrace/subset-game.git{DEFAULT}", WIDTH, "c"))
     print()
 
 

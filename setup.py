@@ -3,7 +3,7 @@ from setuptools import setup
 setup(name="subset",
       version="0.1",
       description="A cli-based word game",
-      url="",
+      url="https://github.com/rightbrace/subset-game.git",
       author="Josef Duchesne",
       author_email="josefduchesne@outlook.com",
       license="MIT",
