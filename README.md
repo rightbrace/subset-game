@@ -11,10 +11,7 @@ Linux, should run on macOS, and theoretically runs on Windows.
 
 ## Through Pip
 
-Just run `sudo pip install subset`. Then run `subset` in a terminal. As of right
-now, a terminal width of at least 80 characters is required. (I intend to fix
-this, but it looks good at 80 and that is a standard size, so I won't adjust the
-scaling until I have time to do it properly)
+Just run `sudo pip install subset`. Then run `subset` in a terminal.
 
 ## From Source
 
@@ -54,10 +51,10 @@ So far I have implemented:
 
 - The basic game as described above
 - A savefile stored in `~/.subset`
+- Dynamic terminal sizing (experimental)
 
 Features I may add:
 
-- Dynamic terminal sizing
 - Multiple savefiles at once
 - Difficulty selection (this is tricky because its very difficult to qualitatively
   analyze the difficulty of a puzzle. Puzzles with fewer words are harder to

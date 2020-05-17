@@ -7,6 +7,7 @@ import os
 import time
 import sys
 import textwrap
+import shutil
 from pathlib import Path
 
 import colorama
@@ -21,7 +22,7 @@ BOLD = "\033[1m"
 DEFAULT = "\033[0m"
 
 # Display globals
-WIDTH = 80
+WIDTH = shutil.get_terminal_size().columns # Falls back to 80
 MID_WIDTH = 35
 
 # Filesystem globals
@@ -38,9 +39,6 @@ def main():
 
     # On Windows, this allows use of ANSI escape sequences
     colorama.init()
-
-    # Standard sized terminal
-    WIDTH = 80
 
     # Ensure local directory exists
     if not os.path.exists(LOCAL):
@@ -124,7 +122,8 @@ def main():
     score = sum([score_word(word) for word in found])
 
     while True:
-
+        # Refresh size every loop
+        WIDTH = shutil.get_terminal_size().columns
         clear()
         print_banner()
 
@@ -133,12 +132,12 @@ def main():
         # Save the cursor, not necessary, but nice because we're going to jump
         # back into the logo lines and print score, words, and total pangrams
         print("\033[s")
-        print(f"\033[3;{WIDTH-20}H", end="")
-        print(align(f"Score: {score_color}{score}{DEFAULT}/{GREEN}{total_score}{DEFAULT}", 20, "r")) 
-        print(f"\033[4;{WIDTH-20}H", end="")
-        print(align(f"Words: {score_color}{len(found)}{DEFAULT}/{GREEN}{len(valid_words)}{DEFAULT}", 20, "r"))
-        print(f"\033[5;{WIDTH-20}H", end="")
-        print(align(f"{YELLOW}{pluralize(len(pangrams), 'Pangram')}{DEFAULT}", 20, "r"))
+        print(f"\033[3;{WIDTH-16}H", end="")
+        print(align(f"Score: {score_color}{score}{DEFAULT}/{GREEN}{total_score}{DEFAULT}", 16, "r")) 
+        print(f"\033[4;{WIDTH-16}H", end="")
+        print(align(f"Words: {score_color}{len(found)}{DEFAULT}/{GREEN}{len(valid_words)}{DEFAULT}", 16, "r"))
+        print(f"\033[5;{WIDTH-16}H", end="")
+        print(align(f"{YELLOW}{pluralize(len(pangrams), 'Pangram')}{DEFAULT}", 16, "r"))
         # Restore the cursor (to one line below the banner separator (===))
         print("\033[u")
 
@@ -159,6 +158,8 @@ def main():
 
         # All options should clear the screen (though all should redraw the
         # banner too
+
+        WIDTH = shutil.get_terminal_size().columns
         clear()
 
         # Ignore empty input
@@ -229,12 +230,20 @@ def main():
         print() 
 
 def print_banner():
+    if WIDTH > 70:
+        alignment = "c"
+    elif WIDTH > 50:
+        alignment = "l"
+    else:
+        print(f"\n\n\n\n{YELLOW}Subset{DEFAULT}\n"+"="*WIDTH+"\n")
+        return
+
     print(YELLOW, end="")
-    print(align("   _____       __              __ ", WIDTH, "c"))
-    print(align("  / ___/__  __/ /_  ________  / /_", WIDTH, "c"))
-    print(align("  \\__ \\/ / / / __ \\/ ___/ _ \\/ __/", WIDTH, "c"))
-    print(align(" ___/ / /_/ / /_/ (__  )  __/ /_  ", WIDTH, "c"))
-    print(align("/____/\\__,_/_.___/____/\\___/\\__/  ", WIDTH, "c"))
+    print(align("   _____       __              __ ", WIDTH, alignment))
+    print(align("  / ___/__  __/ /_  ________  / /_", WIDTH, alignment))
+    print(align("  \\__ \\/ / / / __ \\/ ___/ _ \\/ __/", WIDTH, alignment))
+    print(align(" ___/ / /_/ / /_/ (__  )  __/ /_  ", WIDTH, alignment))
+    print(align("/____/\\__,_/_.___/____/\\___/\\__/  ", WIDTH, alignment))
     print(DEFAULT, end="")
     print()
     print("="*WIDTH)
