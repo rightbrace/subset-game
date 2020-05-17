@@ -6,8 +6,8 @@ with open("README.md", "r") as f:
 setup(name="subset",
       version="0.1.0",
       description="A cli-based word game",
-      long_description_content_type="text/markdown"
-      long_description=long_description
+      long_description_content_type="text/markdown",
+      long_description=long_description,
       url="https://github.com/rightbrace/subset-game.git",
       author="Josef Duchesne",
       author_email="josefduchesne@outlook.com",
