@@ -1,0 +1,5 @@
+#!python
+
+from subset import app
+
+app.main()
