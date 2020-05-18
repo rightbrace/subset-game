@@ -14,7 +14,12 @@ setup(name="subset",
       author_email="josefduchesne@outlook.com",
       license="MIT",
       packages=setuptools.find_packages(),
-      scripts=["bin/subset"],
+      #scripts=["bin/subset"],
+      entry_points = {
+        "console_scripts":[
+            "subset = subset.app:main"
+        ]
+      },
       zip_safe=False,
       install_requires=[
           "colorama"
