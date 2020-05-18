@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setup(name="subset",
-      version="0.1.1",
+      version="0.1.2",
       description="A cli-based word game",
       long_description_content_type="text/markdown",
       long_description=long_description,
